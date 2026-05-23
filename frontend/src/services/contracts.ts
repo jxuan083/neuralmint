@@ -4,6 +4,7 @@ export const CONTRACTS = {
   MINING_REWARD: import.meta.env.VITE_MINING_REWARD_ADDRESS || "",
   MINER_STAKING: import.meta.env.VITE_MINER_STAKING_ADDRESS || "",
   AMM: import.meta.env.VITE_AMM_ADDRESS || "",
+  GOVERNANCE: import.meta.env.VITE_GOVERNANCE_ADDRESS || "",
 };
 
 // Minimal ABIs for frontend interaction
@@ -49,4 +50,20 @@ export const MINING_ABI = [
   "function claimsUntilHalving() view returns (uint256)",
   "function totalClaims() view returns (uint256)",
   "function difficulty() view returns (uint256)",
+];
+
+export const GOVERNANCE_ABI = [
+  "function proposalCount() view returns (uint256)",
+  "function propose(string description, address target, bytes callData) returns (uint256)",
+  "function vote(uint256 proposalId, bool support) external",
+  "function execute(uint256 proposalId) external",
+  "function cancel(uint256 proposalId) external",
+  "function state(uint256 proposalId) view returns (uint8)",
+  "function hasVoted(uint256 proposalId, address voter) view returns (bool)",
+  "function getProposal(uint256 proposalId) view returns (address proposer, string description, address target, uint256 forVotes, uint256 againstVotes, uint256 startTime, uint256 endTime, uint256 eta, bool executed, bool canceled)",
+  "function getAllProposals() view returns (uint256[])",
+  "function VOTING_PERIOD() view returns (uint256)",
+  "function TIMELOCK_DELAY() view returns (uint256)",
+  "function QUORUM() view returns (uint256)",
+  "function PROPOSAL_THRESHOLD() view returns (uint256)",
 ];

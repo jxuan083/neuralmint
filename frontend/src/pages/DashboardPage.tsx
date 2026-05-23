@@ -39,7 +39,7 @@ export function DashboardPage({ address }: DashboardPageProps) {
         {[
           { icon: Activity, label: "Total Requests", value: usage?.total_requests ?? 0, color: "#10b981" },
           { icon: Zap, label: "Total Tokens", value: (usage?.total_tokens ?? 0).toLocaleString(), color: "#8b5cf6" },
-          { icon: Coins, label: "NMT Spent", value: (usage?.total_nmt_spent ?? 0).toFixed(4), color: "#f59e0b" },
+          { icon: Coins, label: "NMB Spent", value: (usage?.total_nmt_spent ?? 0).toFixed(4), color: "#f59e0b" },
           { icon: Clock, label: "Period", value: "Last 30 days", color: "#6b7280" },
         ].map(({ icon: Icon, label, value, color }) => (
           <div key={label} style={card}>

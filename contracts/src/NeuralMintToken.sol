@@ -22,7 +22,7 @@ contract NeuralMintToken is ERC20, Ownable {
         _;
     }
 
-    constructor() ERC20("NeuralMint", "NMT") Ownable(msg.sender) {}
+    constructor() ERC20("NeuralMint", "NMB") Ownable(msg.sender) {}
 
     /// @notice Set the minter address (MiningReward contract). Can only be locked once.
     function setMinter(address _minter) external onlyOwner {

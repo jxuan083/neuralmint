@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Wallet, BarChart3, Key, BookOpen, Pickaxe, ArrowLeftRight } from "lucide-react";
+import { Wallet, BarChart3, Key, BookOpen, Pickaxe, ArrowLeftRight, Vote } from "lucide-react";
 
 interface NavbarProps {
   address: string | null;
@@ -15,6 +15,7 @@ const NAV_ITEMS = [
   { path: "/docs", label: "Docs", icon: BookOpen },
   { path: "/miner", label: "Mine", icon: Pickaxe },
   { path: "/swap", label: "Swap", icon: ArrowLeftRight },
+  { path: "/governance", label: "DAO", icon: Vote },
 ];
 
 export function Navbar({ address, balance, isConnecting, onConnect, onDisconnect }: NavbarProps) {
@@ -61,7 +62,7 @@ export function Navbar({ address, balance, isConnecting, onConnect, onDisconnect
       <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
         {address && (
           <span style={{ color: "#10b981", fontSize: 14, fontWeight: 600 }}>
-            {parseFloat(balance).toFixed(2)} NMT
+            {parseFloat(balance).toFixed(2)} NMB
           </span>
         )}
         <button

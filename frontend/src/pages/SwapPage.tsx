@@ -12,7 +12,7 @@ interface SwapPageProps {
 export function SwapPage({ address, signer, onBalanceRefresh }: SwapPageProps) {
   const [amountIn, setAmountIn] = useState("");
   const [amountOut, setAmountOut] = useState("");
-  const [direction, setDirection] = useState<"a_to_b" | "b_to_a">("b_to_a"); // default: buy NMT
+  const [direction, setDirection] = useState<"a_to_b" | "b_to_a">("b_to_a"); // default: buy NMB
   const [reserveA, setReserveA] = useState("0");
   const [reserveB, setReserveB] = useState("0");
   const [loading, setLoading] = useState(false);
@@ -60,7 +60,7 @@ export function SwapPage({ address, signer, onBalanceRefresh }: SwapPageProps) {
         ? await amm.tokenA()
         : await amm.tokenB();
 
-      // Approve if selling NMT
+      // Approve if selling NMB
       const tokenContract = new Contract(tokenAddress, TOKEN_ABI, signer);
       const allowance = await tokenContract.allowance(address, CONTRACTS.AMM);
       const amountWei = parseEther(amountIn);
@@ -103,7 +103,7 @@ export function SwapPage({ address, signer, onBalanceRefresh }: SwapPageProps) {
 
         {/* From */}
         <div style={{ marginBottom: 8 }}>
-          <label style={{ color: "#888", fontSize: 12 }}>From ({direction === "a_to_b" ? "NMT" : "MATIC"})</label>
+          <label style={{ color: "#888", fontSize: 12 }}>From ({direction === "a_to_b" ? "NMB" : "MATIC"})</label>
           <input
             type="number"
             value={amountIn}
@@ -155,7 +155,7 @@ export function SwapPage({ address, signer, onBalanceRefresh }: SwapPageProps) {
 
         {/* To */}
         <div style={{ marginBottom: 16 }}>
-          <label style={{ color: "#888", fontSize: 12 }}>To ({direction === "a_to_b" ? "MATIC" : "NMT"})</label>
+          <label style={{ color: "#888", fontSize: 12 }}>To ({direction === "a_to_b" ? "MATIC" : "NMB"})</label>
           <input
             type="text"
             value={amountOut}
@@ -178,7 +178,7 @@ export function SwapPage({ address, signer, onBalanceRefresh }: SwapPageProps) {
 
         {/* Pool info */}
         <div style={{ color: "#555", fontSize: 12, marginBottom: 16 }}>
-          Pool: {parseFloat(reserveA).toFixed(2)} NMT / {parseFloat(reserveB).toFixed(2)} MATIC
+          Pool: {parseFloat(reserveA).toFixed(2)} NMB / {parseFloat(reserveB).toFixed(2)} MATIC
         </div>
 
         {/* Swap button */}

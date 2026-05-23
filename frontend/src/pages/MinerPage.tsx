@@ -50,7 +50,7 @@ export function MinerPage() {
           </div>
         </div>
         <div style={cardStyle}>
-          <div style={{ color: "#888", fontSize: 12, marginBottom: 4 }}>Total NMT Earned</div>
+          <div style={{ color: "#888", fontSize: 12, marginBottom: 4 }}>Total NMB Earned</div>
           <div style={{ fontSize: 28, fontWeight: 700, color: "#f59e0b" }}>
             {miners.reduce((sum, m) => sum + m.tokens_earned, 0).toFixed(1)}
           </div>
@@ -74,7 +74,7 @@ export function MinerPage() {
         <p style={{ color: "#666" }}>Loading...</p>
       ) : miners.length === 0 ? (
         <div style={{ ...cardStyle, textAlign: "center", color: "#666" }}>
-          No miners online. Start the miner client to begin earning NMT.
+          No miners online. Start the miner client to begin earning NMB.
         </div>
       ) : (
         <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
@@ -106,7 +106,7 @@ export function MinerPage() {
                 </div>
                 <div style={{ textAlign: "right" }}>
                   <div style={{ color: "#888", fontSize: 11 }}>Earned</div>
-                  <div style={{ color: "#f59e0b", fontWeight: 600 }}>{miner.tokens_earned.toFixed(1)} NMT</div>
+                  <div style={{ color: "#f59e0b", fontWeight: 600 }}>{miner.tokens_earned.toFixed(1)} NMB</div>
                 </div>
               </div>
             </div>

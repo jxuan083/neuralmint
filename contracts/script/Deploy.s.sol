@@ -6,6 +6,7 @@ import {NeuralMintToken} from "../src/NeuralMintToken.sol";
 import {MiningReward} from "../src/MiningReward.sol";
 import {MinerStaking} from "../src/MinerStaking.sol";
 import {SimpleAMM} from "../src/SimpleAMM.sol";
+import {Governance} from "../src/Governance.sol";
 
 contract Deploy is Script {
     // Allocation constants
@@ -20,9 +21,9 @@ contract Deploy is Script {
 
         vm.startBroadcast();
 
-        // 1. Deploy NeuralMintToken
+        // 1. Deploy NeuralMintToken (NMB)
         NeuralMintToken token = new NeuralMintToken();
-        console.log("NeuralMintToken deployed:", address(token));
+        console.log("NeuralMintToken (NMB) deployed:", address(token));
 
         // 2. Deploy MiningReward
         MiningReward mining = new MiningReward(address(token), relayer);
@@ -36,19 +37,27 @@ contract Deploy is Script {
         MinerStaking staking = new MinerStaking(address(token));
         console.log("MinerStaking deployed:", address(staking));
 
-        // 5. Deploy SimpleAMM (NMT / paired token)
+        // 5. Deploy SimpleAMM (NMB / paired token)
         SimpleAMM amm = new SimpleAMM(address(token), pairedToken);
         console.log("SimpleAMM deployed:", address(amm));
 
-        // 6. Mint team allocation to deployer
+        // 6. Deploy Governance (DAO)
+        Governance gov = new Governance(address(token));
+        console.log("Governance (DAO) deployed:", address(gov));
+
+        // 7. Transfer MinerStaking ownership to Governance so DAO controls params
+        staking.transferOwnership(address(gov));
+        console.log("MinerStaking ownership transferred to Governance");
+
+        // 8. Mint team allocation to deployer
         token.ownerMint(msg.sender, TEAM_ALLOCATION);
-        console.log("Team allocation minted:", TEAM_ALLOCATION / 1e18, "NMT");
+        console.log("Team allocation minted:", TEAM_ALLOCATION / 1e18, "NMB");
 
-        // 7. Mint liquidity allocation to deployer (for adding to AMM later)
+        // 9. Mint liquidity allocation to deployer (for adding to AMM later)
         token.ownerMint(msg.sender, LIQUIDITY_ALLOCATION);
-        console.log("Liquidity allocation minted:", LIQUIDITY_ALLOCATION / 1e18, "NMT");
+        console.log("Liquidity allocation minted:", LIQUIDITY_ALLOCATION / 1e18, "NMB");
 
-        // 8. Lock the minter so owner can't change it
+        // 10. Lock the minter so owner can't change it
         token.lockMinter();
         console.log("Minter locked");
 
@@ -56,11 +65,12 @@ contract Deploy is Script {
 
         // Print summary
         console.log("--- Deployment Summary ---");
-        console.log("Token:", address(token));
-        console.log("Mining:", address(mining));
-        console.log("Staking:", address(staking));
-        console.log("AMM:", address(amm));
-        console.log("Total minted to deployer:", (TEAM_ALLOCATION + LIQUIDITY_ALLOCATION) / 1e18, "NMT");
-        console.log("Remaining for mining:", (21_000_000 * 1e18 - TEAM_ALLOCATION - LIQUIDITY_ALLOCATION) / 1e18, "NMT");
+        console.log("Token (NMB):", address(token));
+        console.log("Mining:     ", address(mining));
+        console.log("Staking:    ", address(staking));
+        console.log("AMM:        ", address(amm));
+        console.log("Governance: ", address(gov));
+        console.log("Total minted to deployer:", (TEAM_ALLOCATION + LIQUIDITY_ALLOCATION) / 1e18, "NMB");
+        console.log("Remaining for mining:", (21_000_000 * 1e18 - TEAM_ALLOCATION - LIQUIDITY_ALLOCATION) / 1e18, "NMB");
     }
 }

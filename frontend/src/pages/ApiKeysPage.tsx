@@ -197,7 +197,7 @@ export function ApiKeysPage({ address }: ApiKeysPageProps) {
               </div>
               <div style={{ textAlign: "right" }}>
                 <div style={{ color: "#f59e0b", fontSize: 16, fontWeight: 600 }}>{k.total_nmt_spent.toFixed(4)}</div>
-                <div style={{ color: "#666", fontSize: 11 }}>NMT spent</div>
+                <div style={{ color: "#666", fontSize: 11 }}>NMB spent</div>
               </div>
               {k.is_active && (
                 <button onClick={() => revokeKey(k.id)} style={{

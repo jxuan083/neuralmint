@@ -6,6 +6,7 @@ import { ApiKeysPage } from "./pages/ApiKeysPage";
 import { DocsPage } from "./pages/DocsPage";
 import { MinerPage } from "./pages/MinerPage";
 import { SwapPage } from "./pages/SwapPage";
+import { GovernancePage } from "./pages/GovernancePage";
 
 export default function App() {
   const wallet = useWallet();
@@ -28,6 +29,9 @@ export default function App() {
           <Route path="/miner" element={<MinerPage />} />
           <Route path="/swap" element={
             <SwapPage address={wallet.address} signer={wallet.signer} onBalanceRefresh={wallet.refreshBalance} />
+          } />
+          <Route path="/governance" element={
+            <GovernancePage address={wallet.address} signer={wallet.signer} />
           } />
         </Routes>
       </div>

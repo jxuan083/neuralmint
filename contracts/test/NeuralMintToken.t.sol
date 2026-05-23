@@ -16,7 +16,7 @@ contract NeuralMintTokenTest is Test {
 
     function test_InitialState() public view {
         assertEq(token.name(), "NeuralMint");
-        assertEq(token.symbol(), "NMT");
+        assertEq(token.symbol(), "NMB");
         assertEq(token.totalSupply(), 0);
         assertEq(token.MAX_SUPPLY(), 21_000_000 * 1e18);
         assertEq(token.minter(), address(0));

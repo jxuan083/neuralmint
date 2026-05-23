@@ -112,7 +112,7 @@ for chunk in response:
         <h2 style={{ color: "#eee", marginBottom: 16, fontSize: 18 }}>Quick Start</h2>
         <div style={{ color: "#aaa", fontSize: 14, lineHeight: 1.8, marginBottom: 16 }}>
           <p style={{ marginBottom: 8 }}>1. Connect your wallet and get an API key from the <strong style={{ color: "#eee" }}>API Keys</strong> page</p>
-          <p style={{ marginBottom: 8 }}>2. Fund your wallet with NMT tokens (mine them or swap on the DEX)</p>
+          <p style={{ marginBottom: 8 }}>2. Fund your wallet with NMB tokens (mine them or swap on the DEX)</p>
           <p>3. Use the OpenAI SDK with your NeuralMint endpoint:</p>
         </div>
         {codeBlock("python", "Python", pythonExample)}
@@ -149,9 +149,9 @@ for chunk in response:
           </thead>
           <tbody>
             {[
-              { model: "llama-3.2-1b", params: "1B", cost: "0.001 NMT", use: "Simple tasks, fast responses" },
-              { model: "llama-3.2-3b", params: "3B", cost: "0.003 NMT", use: "General purpose (default)" },
-              { model: "llama-3.1-8b", params: "8B", cost: "0.008 NMT", use: "Complex reasoning" },
+              { model: "llama-3.2-1b", params: "1B", cost: "0.001 NMB", use: "Simple tasks, fast responses" },
+              { model: "llama-3.2-3b", params: "3B", cost: "0.003 NMB", use: "General purpose (default)" },
+              { model: "llama-3.1-8b", params: "8B", cost: "0.008 NMB", use: "Complex reasoning" },
             ].map((row) => (
               <tr key={row.model} style={{ borderBottom: "1px solid #1a1a1a" }}>
                 <td style={{ padding: "10px 12px", fontFamily: "monospace", color: "#10b981", fontSize: 13 }}>{row.model}</td>
@@ -168,11 +168,11 @@ for chunk in response:
       <div style={card}>
         <h2 style={{ color: "#eee", marginBottom: 12, fontSize: 18 }}>How Pricing Works</h2>
         <div style={{ color: "#aaa", fontSize: 14, lineHeight: 1.8 }}>
-          <p>NeuralMint charges per token (input + output), paid in NMT.</p>
-          <p style={{ marginTop: 8 }}>Get NMT by:</p>
+          <p>NeuralMint charges per token (input + output), paid in NMB.</p>
+          <p style={{ marginTop: 8 }}>Get NMB by:</p>
           <ul style={{ paddingLeft: 20, marginTop: 4 }}>
-            <li><strong style={{ color: "#eee" }}>Mining</strong> - Run the miner client to earn NMT by providing GPU compute</li>
-            <li><strong style={{ color: "#eee" }}>Swapping</strong> - Trade MATIC for NMT on our built-in DEX</li>
+            <li><strong style={{ color: "#eee" }}>Mining</strong> - Run the miner client to earn NMB by providing GPU compute</li>
+            <li><strong style={{ color: "#eee" }}>Swapping</strong> - Trade MATIC for NMB on our built-in DEX</li>
           </ul>
         </div>
       </div>
