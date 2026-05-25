@@ -86,6 +86,30 @@ async def submit_ai_task_reward(miner_address: str, task_id_bytes: bytes) -> str
         return None
 
 
+async def set_capacity_bonus(active: bool, multiplier_bps: int = 15000) -> str | None:
+    """Toggle capacity bonus when DAU/miner ratio exceeds safety threshold (2.5).
+    multiplier_bps: reward multiplier in basis points (15000 = 150%)."""
+    contract = get_mining_contract()
+    account = _get_relayer_account()
+    if not contract or not account:
+        return None
+
+    try:
+        tx = contract.functions.setCapacityBonus(active, multiplier_bps).build_transaction({
+            "from": account.address,
+            "nonce": w3.eth.get_transaction_count(account.address),
+            "gas": 80_000,
+            "gasPrice": w3.eth.gas_price,
+            "chainId": config.CHAIN_ID,
+        })
+        signed = account.sign_transaction(tx)
+        tx_hash = w3.eth.send_raw_transaction(signed.raw_transaction)
+        return tx_hash.hex()
+    except Exception as e:
+        print(f"[chain] setCapacityBonus failed: {e}")
+        return None
+
+
 async def get_token_stats() -> dict:
     """Fetch on-chain token/mining stats."""
     token = get_token_contract()
@@ -99,6 +123,8 @@ async def get_token_stats() -> dict:
             "current_epoch": 0,
             "claims_until_halving": 10_000,
             "pow_difficulty": "0",
+            "cost_per_task": str(35 * 10**18),
+            "capacity_bonus_active": False,
         }
 
     total_supply = token.functions.totalSupply().call()
@@ -107,6 +133,8 @@ async def get_token_stats() -> dict:
     current_epoch = mining.functions.currentEpoch().call()
     claims_until = mining.functions.claimsUntilHalving().call()
     difficulty = mining.functions.difficulty().call()
+    cost_per_task = mining.functions.costPerTask().call()
+    pricing = mining.functions.pricingState().call()
 
     return {
         "total_supply": str(total_supply),
@@ -115,4 +143,7 @@ async def get_token_stats() -> dict:
         "current_epoch": current_epoch,
         "claims_until_halving": claims_until,
         "pow_difficulty": str(difficulty),
+        "cost_per_task": str(cost_per_task),
+        "capacity_bonus_active": pricing[3],
+        "capacity_bonus_multiplier_bps": pricing[4],
     }

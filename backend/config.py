@@ -32,7 +32,9 @@ OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "llama3.2:1b")
 FALLBACK_ENABLED = os.getenv("FALLBACK_ENABLED", "true").lower() == "true"
 
 # --- Mining ---
-COST_PER_PROMPT = int(os.getenv("COST_PER_PROMPT", "1"))  # NMT per prompt (in whole tokens)
+COST_PER_PROMPT = int(os.getenv("COST_PER_PROMPT", "35"))  # NMT per prompt (calibrated for ~365-day first halving)
+# DAU/miner ratio threshold above which capacity bonus is triggered (2.5 = 40% miner growth rule)
+DAU_MINER_RATIO_THRESHOLD = float(os.getenv("DAU_MINER_RATIO_THRESHOLD", "2.5"))
 TASK_TIMEOUT_SECONDS = int(os.getenv("TASK_TIMEOUT_SECONDS", "60"))
 
 # --- ABI paths ---
