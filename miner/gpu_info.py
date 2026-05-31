@@ -20,5 +20,5 @@ def get_gpu_info() -> dict:
             "gpu_name": parts[0],
             "gpu_memory_mb": int(parts[1]),
         }
-    except (FileNotFoundError, subprocess.TimeoutExpired, (IndexError, ValueError)):
+    except (FileNotFoundError, subprocess.TimeoutExpired, IndexError, ValueError):
         return {}
