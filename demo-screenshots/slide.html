@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0d1117;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+    color: #e6edf3;
+    padding: 40px;
+  }
+  .slide {
+    width: 1280px;
+    background: #161b22;
+    border-radius: 16px;
+    border: 1px solid #30363d;
+    padding: 48px;
+    box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+  }
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 40px;
+  }
+  .logo {
+    font-size: 28px;
+    font-weight: 700;
+    color: #3fb950;
+    letter-spacing: -0.5px;
+  }
+  .logo span { color: #58a6ff; }
+  .tagline {
+    font-size: 15px;
+    color: #8b949e;
+    margin-left: auto;
+    font-weight: 400;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .card {
+    background: #0d1117;
+    border-radius: 10px;
+    border: 1px solid #30363d;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .card-label {
+    padding: 10px 16px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #8b949e;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    border-bottom: 1px solid #21262d;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card-label .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+  }
+  .dot-green { background: #3fb950; }
+  .dot-blue  { background: #58a6ff; }
+  .dot-yellow{ background: #d29922; }
+  .dot-purple{ background: #a371f7; }
+  .card img {
+    width: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .footer {
+    margin-top: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .badge {
+    background: #1f6feb22;
+    border: 1px solid #1f6feb;
+    color: #58a6ff;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .stats {
+    display: flex;
+    gap: 32px;
+  }
+  .stat { text-align: center; }
+  .stat-num { font-size: 22px; font-weight: 700; color: #3fb950; }
+  .stat-lbl { font-size: 11px; color: #8b949e; margin-top: 2px; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="header">
+    <div class="logo">Neural<span>Mint</span></div>
+    <div style="font-size:13px;color:#8b949e;padding:4px 12px;background:#1f6feb11;border:1px solid #30363d;border-radius:6px;">
+      OpenAI-Compatible · Decentralized · GPU Mining
+    </div>
+    <div class="tagline">只改兩行，切換到去中心化 AI API</div>
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="card-label">
+        <span class="dot dot-blue"></span>
+        1. SDK 相容性 — 只改兩行
+      </div>
+      <img src="1-code-comparison.png" alt="Code Comparison">
+    </div>
+    <div class="card">
+      <div class="card-label">
+        <span class="dot dot-green"></span>
+        2. Miner 節點 — 即時接收並完成任務
+      </div>
+      <img src="2-miner-terminal.png" alt="Miner Terminal">
+    </div>
+    <div class="card">
+      <div class="card-label">
+        <span class="dot dot-yellow"></span>
+        3. API 回應 — 格式與 OpenAI 完全相同
+      </div>
+      <img src="3-api-response-terminal.png" alt="API Response">
+    </div>
+    <div class="card">
+      <div class="card-label">
+        <span class="dot dot-purple"></span>
+        4. 開發者文件 — Quick Start 整合教學
+      </div>
+      <img src="4-dashboard-docs.png" alt="Dashboard Docs">
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="badge">Live Demo · localhost:8000</div>
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">2</div>
+        <div class="stat-lbl">Lines Changed</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">100%</div>
+        <div class="stat-lbl">OpenAI Compatible</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">NMT</div>
+        <div class="stat-lbl">Token Economy</div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

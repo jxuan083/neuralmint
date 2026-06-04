@@ -1,0 +1,10 @@
+=== NeuralMint Miner ===
+Address: 0x50a13d0e5ce58c0d8124653d3f9c2d25b325bbbc
+GPU: None detected
+Ollama: ready
+Server: ws://localhost:8000/api/miners/ws
+
+[miner] Authenticated successfully
+[miner] Mining started. Waiting for tasks...
+[miner] Received AI task 1ab724f8...
+[miner] Task 1ab724f8 completed in 2.3s (total: 1)

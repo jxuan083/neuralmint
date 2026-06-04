@@ -1,0 +1,21 @@
+{
+    "id": "chatcmpl-5bfb994e-646",
+    "object": "chat.completion",
+    "created": 1779699600,
+    "model": "llama-3.2-1b",
+    "choices": [
+        {
+            "index": 0,
+            "message": {
+                "role": "assistant",
+                "content": "Blockchain is a decentralized, digital ledger technology that records transactions and data across a network of computers in a secure and transparent manner."
+            },
+            "finish_reason": "stop"
+        }
+    ],
+    "usage": {
+        "prompt_tokens": 10,
+        "completion_tokens": 39,
+        "total_tokens": 49
+    }
+}

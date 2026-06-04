@@ -65,7 +65,9 @@ async def submit_ai_task_reward(miner_address: str, task_id_bytes: bytes) -> str
     contract = get_mining_contract()
     account = _get_relayer_account()
     if not contract or not account:
+        print(f"[chain] submitAITask skipped: contract={bool(contract)} account={bool(account)}")
         return None
+    print(f"[chain] submitAITask: miner={miner_address} task={task_id_bytes.hex()}")
 
     try:
         tx = contract.functions.submitAITask(
